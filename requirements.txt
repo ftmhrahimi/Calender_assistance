@@ -1,0 +1,19 @@
+# Calendar Assistance — Python dependencies
+# See README.md ("Dependencies") for why each package exists.
+
+# --- LLM orchestration ---
+langchain              # LLMChain pipeline abstraction
+langchain-community    # DeepInfra LLM connector
+langchain-core         # PromptTemplate and core abstractions
+
+# --- Persian calendar support ---
+persiantools           # JalaliDate (today's Persian date for the prompt)
+
+# --- Google Calendar integration ---
+google-api-python-client   # Calendar API v3 client (events.insert)
+google-auth                # Credentials objects and token refresh
+google-auth-oauthlib       # Browser-based OAuth 2.0 installed-app flow
+
+# --- Optional HTTP interface (main.py) ---
+fastapi                # POST /insert endpoint
+uvicorn                # ASGI server to run the FastAPI app
