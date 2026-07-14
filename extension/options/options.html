@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calendar Assistant — Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <main>
+    <h1>Calendar Assistant settings</h1>
+
+    <section>
+      <h2>AI model (DeepInfra)</h2>
+      <div class="field">
+        <label for="api-key">DeepInfra API key</label>
+        <div class="key-row">
+          <input id="api-key" type="password" autocomplete="off" spellcheck="false"
+                 placeholder="Paste your DeepInfra API key" />
+          <button id="toggle-key" type="button" aria-label="Show or hide API key">Show</button>
+        </div>
+        <p class="hint">
+          Create a key at
+          <a href="https://deepinfra.com/dash/api_keys" target="_blank" rel="noopener noreferrer">deepinfra.com/dash/api_keys</a>.
+          The key is stored only in this browser profile (<code>chrome.storage.local</code>) and is sent only to
+          <code>api.deepinfra.com</code>.
+        </p>
+      </div>
+      <div class="field">
+        <label for="model">Model</label>
+        <input id="model" type="text" list="model-suggestions" spellcheck="false" />
+        <datalist id="model-suggestions">
+          <option value="meta-llama/Llama-3.3-70B-Instruct"></option>
+          <option value="meta-llama/Meta-Llama-3.1-70B-Instruct"></option>
+          <option value="meta-llama/Meta-Llama-3.1-8B-Instruct"></option>
+          <option value="Qwen/Qwen2.5-72B-Instruct"></option>
+        </datalist>
+        <p class="hint">Any DeepInfra chat model ID. Larger models parse Persian dates more reliably.</p>
+      </div>
+      <button id="test-api" type="button">Test API key</button>
+      <span id="api-test-result" class="test-result"></span>
+    </section>
+
+    <section>
+      <h2>Google Calendar</h2>
+      <div class="field">
+        <label for="calendar-id">Calendar ID</label>
+        <input id="calendar-id" type="text" spellcheck="false" />
+        <p class="hint">Use <code>primary</code> for your main calendar, or a specific calendar's ID from Google Calendar settings.</p>
+      </div>
+      <button id="test-google" type="button">Sign in &amp; test Google access</button>
+      <span id="google-test-result" class="test-result"></span>
+    </section>
+
+    <section>
+      <h2>Event defaults</h2>
+      <div class="field">
+        <label for="duration">Default event duration (minutes)</label>
+        <input id="duration" type="number" min="5" max="1440" step="5" />
+      </div>
+      <div class="field">
+        <label for="timezone">Time zone</label>
+        <input id="timezone" type="text" list="tz-suggestions" spellcheck="false" placeholder="Auto-detect" />
+        <datalist id="tz-suggestions">
+          <option value="Asia/Tehran"></option>
+          <option value="Europe/Berlin"></option>
+          <option value="Europe/London"></option>
+          <option value="America/New_York"></option>
+          <option value="America/Los_Angeles"></option>
+        </datalist>
+        <p class="hint">Leave empty to use this browser's time zone (<span id="detected-tz"></span>).</p>
+      </div>
+      <div class="field checkbox">
+        <label>
+          <input id="debug" type="checkbox" />
+          Enable debug logging (service worker console)
+        </label>
+      </div>
+    </section>
+
+    <div class="save-row">
+      <button id="save" class="primary" type="button">Save settings</button>
+      <span id="save-result" class="test-result"></span>
+    </div>
+  </main>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

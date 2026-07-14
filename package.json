@@ -1,0 +1,16 @@
+{
+  "name": "calendar-assistant-extension",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome extension that creates Google Calendar events from natural language (English and Persian/Jalali) via DeepInfra-hosted LLMs.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "icons": "python3 scripts/generate_icons.py",
+    "package": "bash scripts/package.sh",
+    "test:smoke": "node tests/smoke.extension.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.61.1"
+  }
+}

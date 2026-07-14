@@ -1,0 +1,16 @@
+# Build / packaging output
+dist/
+
+# Node
+node_modules/
+
+# Secrets and local credentials — never commit these
+*.pem
+.env
+.env.*
+credentials.json
+token.json
+
+# OS noise
+.DS_Store
+Thumbs.db

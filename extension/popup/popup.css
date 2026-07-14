@@ -1,0 +1,209 @@
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --border: #d1d5db;
+  --text: #111827;
+  --muted: #6b7280;
+  --error-bg: #fef2f2;
+  --error-border: #fca5a5;
+  --error-text: #b91c1c;
+  --success: #15803d;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --border: #4b5563;
+    --text: #f9fafb;
+    --muted: #9ca3af;
+    --error-bg: #451a1a;
+    --error-border: #7f1d1d;
+    --error-text: #fca5a5;
+    --success: #4ade80;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Vazirmatn", sans-serif;
+  font-size: 14px;
+  color: var(--text);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  flex: 1;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+main {
+  padding: 14px;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+textarea,
+input {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+  background: transparent;
+  color: inherit;
+}
+
+textarea:focus,
+input:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: -1px;
+}
+
+button {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+button.primary {
+  width: 100%;
+  margin-top: 10px;
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+button.primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.icon-btn {
+  border: none;
+  background: none;
+  font-size: 16px;
+  padding: 2px 4px;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+.field-row {
+  display: flex;
+  gap: 8px;
+}
+
+.field-row .field {
+  flex: 1;
+  min-width: 0;
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  margin-top: 10px;
+}
+
+.actions .primary {
+  flex: 1;
+  margin-top: 10px;
+}
+
+#status {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+#error {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid var(--error-border);
+  border-radius: 6px;
+  background: var(--error-bg);
+  color: var(--error-text);
+}
+
+#error p {
+  margin: 0 0 6px;
+}
+
+#error button {
+  border-color: var(--error-border);
+  color: inherit;
+}
+
+.success {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.success p {
+  color: var(--success);
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.success a {
+  color: var(--primary);
+}
+
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-inline-end: 6px;
+  border: 2px solid var(--muted);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: -2px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calendar Assistant</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <img src="../icons/icon48.png" alt="" width="24" height="24" />
+    <h1>Calendar Assistant</h1>
+    <button id="open-options" class="icon-btn" title="Settings" aria-label="Settings">&#9881;</button>
+  </header>
+
+  <main>
+    <!-- Step 1: describe the event -->
+    <section id="step-input">
+      <label for="request">Describe your event (English or Persian)</label>
+      <textarea
+        id="request"
+        dir="auto"
+        rows="3"
+        placeholder="e.g. Lunch with Sara tomorrow at 13:00 at Cafe Naderi&#10;مثلاً: جلسه با علی پنج‌شنبه ساعت ۱۰ صبح"
+      ></textarea>
+      <button id="parse-btn" class="primary">Preview event</button>
+    </section>
+
+    <!-- Step 2: review and confirm -->
+    <section id="step-preview" hidden>
+      <h2>Review event</h2>
+      <div class="field">
+        <label for="ev-summary">Title</label>
+        <input id="ev-summary" type="text" dir="auto" required />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="ev-start">Starts</label>
+          <input id="ev-start" type="datetime-local" step="60" required />
+        </div>
+        <div class="field">
+          <label for="ev-end">Ends</label>
+          <input id="ev-end" type="datetime-local" step="60" required />
+        </div>
+      </div>
+      <div class="field">
+        <label for="ev-location">Location <span class="muted">(optional)</span></label>
+        <input id="ev-location" type="text" dir="auto" />
+      </div>
+      <div class="field">
+        <label for="ev-description">Description <span class="muted">(optional)</span></label>
+        <textarea id="ev-description" dir="auto" rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label for="ev-attendees">Attendees <span class="muted">(comma-separated emails, optional)</span></label>
+        <input id="ev-attendees" type="text" placeholder="ali@example.com, sara@example.com" />
+      </div>
+      <p class="muted" id="tz-note"></p>
+      <div class="actions">
+        <button id="back-btn">Back</button>
+        <button id="create-btn" class="primary">Add to Google Calendar</button>
+      </div>
+    </section>
+
+    <!-- Step 3: success -->
+    <section id="step-done" hidden>
+      <div class="success">
+        <p>&#10003; Event created</p>
+        <a id="event-link" href="#" target="_blank" rel="noopener noreferrer">Open in Google Calendar</a>
+      </div>
+      <button id="new-btn" class="primary">Create another event</button>
+    </section>
+
+    <div id="status" role="status" hidden></div>
+    <div id="error" role="alert" hidden>
+      <p id="error-text"></p>
+      <button id="error-options-btn" hidden>Open settings</button>
+    </div>
+  </main>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
