@@ -35,7 +35,6 @@ warnings.filterwarnings("ignore", category=DeprecationWarning, module='langchain
 
 # OAuth scope granting full read/write access to Google Calendar.
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
-DEEPINFRA_API_TOKEN = 'WcKyuf5DlPMCyjtfRHFweP9j1Qc8Hie8'
 MODEL_ID = "meta-llama/Llama-2-70b-chat-hf"
 #MODEL_ID = "meta-llama/Meta-Llama-3.1-405B-Instruct"
 
@@ -76,7 +75,16 @@ def create_llm_chain():
         LLMChain: A chain that maps a raw user request to a dictionary-shaped
         string describing the event.
     """
-    os.environ["DEEPINFRA_API_TOKEN"] = DEEPINFRA_API_TOKEN
+    # The DeepInfra LangChain wrapper reads the token from the
+    # DEEPINFRA_API_TOKEN environment variable. Fail fast with a clear
+    # message if it has not been provided.
+    if not os.environ.get("DEEPINFRA_API_TOKEN"):
+        raise SystemExit(
+            "Error: the DEEPINFRA_API_TOKEN environment variable is not set.\n"
+            "Set it before running, e.g.:\n"
+            "    export DEEPINFRA_API_TOKEN=your-deepinfra-api-token\n"
+            "See .env.example and README.md for details."
+        )
     llm = DeepInfra(model_id=MODEL_ID)
     gregorian_date, jalali_date = get_current_dates()
 
