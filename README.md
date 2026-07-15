@@ -144,7 +144,7 @@ See [`.env.example`](.env.example) for the template.
 |---|---|
 | `DEEPINFRA_API_TOKEN` | API token for the DeepInfra-hosted LLM. Get one at [deepinfra.com](https://deepinfra.com/). |
 
-> **Note:** the current version sets this token inside `Combinev_org.py`. Replace the value of the `DEEPINFRA_API_TOKEN` constant with your own token (see [CODE_REVIEW.md](CODE_REVIEW.md) for the recommended move to environment-variable loading).
+> **Note:** the app reads the token from the `DEEPINFRA_API_TOKEN` environment variable at runtime — it is no longer stored in the source. Export it (`export DEEPINFRA_API_TOKEN=your-token`) or copy [`.env.example`](.env.example) to `.env` and fill in your own value. The app exits with a clear message if the variable is unset.
 
 ## Running the Application
 

@@ -169,7 +169,7 @@ flowchart LR
 
 ## 8. LLM Interaction Flow
 
-1. `create_llm_chain()` sets `DEEPINFRA_API_TOKEN` in the process environment (read by the LangChain `DeepInfra` wrapper).
+1. `create_llm_chain()` requires the `DEEPINFRA_API_TOKEN` environment variable (read by the LangChain `DeepInfra` wrapper) and exits with a clear message if it is unset.
 2. A `PromptTemplate` is built **per run** with today's Gregorian and Jalali dates interpolated via an f-string; `{request}` remains the only template variable.
 3. The prompt instructs the model to output *only* a Python-dictionary string with fields: summary, location, description, start, end, attendees — with missing fields marked `"not provided"`, dates in `YYYY-MM-DDTHH:MM:SS+00:00`, and Jalali→Gregorian conversion anchored to the current year.
 4. `llm_chain({'request': user_req})` executes the remote inference on DeepInfra.
