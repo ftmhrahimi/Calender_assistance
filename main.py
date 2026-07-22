@@ -11,7 +11,7 @@ Run with::
 
 from fastapi import FastAPI, Body
 import Combinev4
-import new_version1
+#import new_version1
 
 app = FastAPI()
 
@@ -25,6 +25,6 @@ async def your_function(req: str = Body(...)):
     Returns:
         The result of the event-creation pipeline.
     """
-    #result = Combinev4.main(req)
-    result = new_version1.main(req)
+    result = Combinev4_prg.main(req)
+    #result = new_version1.main(req)
     return result
